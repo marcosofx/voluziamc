@@ -79,14 +79,14 @@ const styles = StyleSheet.create({
     
   },
   // opção de logo Dev alternativa * LogoDev2.png styles.modalLogoDev2
-  modalLogoDev2: {
+  /*modalLogoDev2: {
     width: 300,
     height: 110,
     marginBottom: 20,
     marginTop: 190,
     resizeMode: 'cover',
     
-  },
+  },*/
 
 });
 
