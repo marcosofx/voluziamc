@@ -4,7 +4,8 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Carousel from 'react-native-reanimated-carousel';
 import Animated, { interpolate } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
-import IntroModal from '../screens/IntroModal'; 
+import IntroModal from '../screens/IntroModal';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
@@ -24,13 +25,21 @@ const images: CarouselItem[] = [
   { id: '8', src: require('../assets/image8.jpg') },
 ];
 
-export default function Feed() {
-  const [modalVisible, setModalVisible] = useState(true); 
+// Defina o tipo do parâmetro para a navegação
+type RootStackParamList = {
+  Home: undefined;
+  Pscreen: undefined;
+  // adicione outras rotas aqui
+};
 
- 
+export default function Feed() {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+
+  const [modalVisible, setModalVisible] = useState(true);
+
   const customAnimation = (value: number) => {
     'worklet';
-    const opacity = interpolate(value, [-1, 0, 1], [0, 1, 0]); 
+    const opacity = interpolate(value, [-1, 0, 1], [0, 1, 0]);
     return {
       opacity,
     };
@@ -40,15 +49,14 @@ export default function Feed() {
     <View style={styles.carouselItem}>
       <Image source={item.src} style={styles.carouselImage} />
       <LinearGradient
-        colors={['transparent', 'rgba(0, 0, 0, 0.589)']} 
-        style={styles.gradient} 
+        colors={['transparent', 'rgba(0, 0, 0, 0.589)']}
+        style={styles.gradient}
       />
     </View>
   );
 
   return (
     <View style={styles.container}>
-      {/* Usando o componente de modal */}
       <IntroModal visible={modalVisible} onClose={() => setModalVisible(false)} />
 
       <ImageBackground
@@ -66,24 +74,24 @@ export default function Feed() {
             renderItem={renderItem}
             loop
             autoPlay={true}
-            autoPlayInterval={1200} 
+            autoPlayInterval={3000}
             pagingEnabled={true}
-            customAnimation={customAnimation} 
+            customAnimation={customAnimation}
           />
 
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Pscreen")}>
             <View style={styles.imageContainer}>
               <Image source={require('../assets/feed1.png')} style={styles.imgFeed} />
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Pscreen")}>
             <View style={styles.imageContainer}>
               <Image source={require('../assets/feed2.png')} style={styles.imgFeed} />
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Pscreen")}>
             <View style={styles.imageContainer}>
               <Image source={require('../assets/feed3.png')} style={styles.imgFeed} />
             </View>
@@ -127,7 +135,6 @@ const styles = StyleSheet.create({
     height: '78%',
     borderRadius: 35,
     marginTop: '-10%',
-
   },
   button: {
     justifyContent: 'center',
@@ -170,7 +177,7 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     borderBottomEndRadius: 35,
     borderBottomStartRadius: 35,
-    width: 394.1,
+    width: 393.1,
     margin: 10,
     height: 140,
     marginVertical: '26%',

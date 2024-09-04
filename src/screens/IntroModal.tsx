@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text, Modal, ImageBackground } from 'react-native';
+import * as Animatable from "react-native-animatable";
 
 interface IntroModalProps {
   visible: boolean;
@@ -22,7 +23,7 @@ const IntroModal: React.FC<IntroModalProps> = ({ visible, onClose }) => {
         resizeMode="cover"
       >
         <View style={styles.modalContent}>
-          <Image source={require('../assets/logo.png')} style={styles.modalLogo} />
+          <Animatable.Image animation="flipInY" source={require('../assets/logo.png')} style={styles.modalLogo} />
           <TouchableOpacity style={styles.modalButton} onPress={onClose}>
             <Text style={styles.modalButtonText}>Acessar</Text>
           </TouchableOpacity>

@@ -15,10 +15,12 @@ const TabRoutes: React.FC = () => {
         name="Feed"
         component={Feed}
         options={{
-          tabBarIcon: ({ color, size }) => <Feather name="home" color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <Feather name="home" color={'#ff9705'} size={size} />,
           tabBarLabel: 'Início',
+          tabBarActiveTintColor: '#ff9705',
+          tabBarInactiveTintColor: '#ff9705',
           tabBarStyle: {
-            backgroundColor: '#ffffff',
+            backgroundColor: '#1a1a1a',
             borderTopWidth: 0,
             elevation: 0,
             borderTopLeftRadius: 25, 
@@ -32,10 +34,12 @@ const TabRoutes: React.FC = () => {
         name="Bcart"
         component={Bcart}
         options={{
-          tabBarIcon: ({ color }) => <AntDesign name="shoppingcart" color={color} size={29} />,
+          tabBarIcon: ({ color }) => <AntDesign name="shoppingcart" color={'#ff9705'} size={29} />,
           tabBarLabel: 'Carrinho',
+          tabBarActiveTintColor: '#ff9705',
+          tabBarInactiveTintColor: '#ff9705',
           tabBarStyle: {
-            backgroundColor: '#ffffff',
+            backgroundColor: '#1a1a1a',
             borderTopWidth: 0,
             elevation: 0,
             borderTopLeftRadius: 25, 
