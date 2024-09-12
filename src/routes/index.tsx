@@ -7,6 +7,6 @@ export default function Routes() {
         <NavigationContainer>
             <DrawerRoutes />
         </NavigationContainer>
-    )
+    );
 
 }

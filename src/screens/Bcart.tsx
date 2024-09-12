@@ -50,8 +50,9 @@ const styles = StyleSheet.create({
 
   },
   Box2: {
+    flex: 0,
     width: "100%",
-    height: "30%",
+    height: "32%",
     backgroundColor: '#4e4e4e',
 
   },
@@ -70,32 +71,34 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     marginRight: "50%",
     width: "85%",
+    color: "#727272"
 
 
   },
   underline: {
     height: 2, 
     width: '90%', 
-    backgroundColor: '#000', 
+    backgroundColor: '#727272a68', 
     marginTop: 4, 
     marginLeft: 19
   },
   Button: {
     backgroundColor: '#ff9705',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-    width: 150,
-    height: 50,
+    borderRadius: 15,
+    width: 140,
+    height: 43,
     marginTop: 9,
-    marginLeft: "60%"
+    marginLeft: "60%",
+    alignItems: 'center',
+    justifyContent: 'center', 
+    paddingBottom: "1%"
   },
 
   ButtonText: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginLeft: "9%"
+
 
 
   },

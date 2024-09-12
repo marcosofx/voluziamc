@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { StyleSheet, View, ImageBackground, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Carousel from 'react-native-reanimated-carousel';
-import Animated, { interpolate } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import IntroModal from '../screens/IntroModal';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { DrawerNavigationProp } from '@react-navigation/drawer';
+import { DrawerParamList } from '../routes/types';
+import { RootStackParamList } from '../routes/types';
+
 
 const { width } = Dimensions.get('window');
 
@@ -25,25 +28,14 @@ const images: CarouselItem[] = [
   { id: '8', src: require('../assets/image8.jpg') },
 ];
 
-// Defina o tipo do parâmetro para a navegação
-type RootStackParamList = {
-  Home: undefined;
-  Pscreen: undefined;
-  // adicione outras rotas aqui
-};
+
+
+type FeedScreenNavigationProp = DrawerNavigationProp<DrawerParamList, 'Tabs'>;
 
 export default function Feed() {
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<FeedScreenNavigationProp>();
 
   const [modalVisible, setModalVisible] = useState(true);
-
-  const customAnimation = (value: number) => {
-    'worklet';
-    const opacity = interpolate(value, [-1, 0, 1], [0, 1, 0]);
-    return {
-      opacity,
-    };
-  };
 
   const renderItem = ({ item }: { item: CarouselItem }) => (
     <View style={styles.carouselItem}>
@@ -76,22 +68,25 @@ export default function Feed() {
             autoPlay={true}
             autoPlayInterval={3000}
             pagingEnabled={true}
-            customAnimation={customAnimation}
           />
 
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Pscreen")}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('StackRoutes', { screen: 'Pscreen'})}
+            
+          >
             <View style={styles.imageContainer}>
               <Image source={require('../assets/feed1.png')} style={styles.imgFeed} />
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Pscreen")}>
+          <TouchableOpacity style={styles.button}>
             <View style={styles.imageContainer}>
               <Image source={require('../assets/feed2.png')} style={styles.imgFeed} />
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Pscreen")}>
+          <TouchableOpacity style={styles.button}>
             <View style={styles.imageContainer}>
               <Image source={require('../assets/feed3.png')} style={styles.imgFeed} />
             </View>

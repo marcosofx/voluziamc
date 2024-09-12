@@ -1,17 +1,24 @@
-import React from 'react';
-import { StyleSheet, View, ImageBackground, Image, TouchableOpacity, Button, BackHandler } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, ImageBackground, Image, TouchableOpacity, Button, FlatList, Text, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { getProdutos } from '../services/api';
 
 
-export default function Products() {
+const Pscreen: React.FC = () => {
   const navigation = useNavigation();
+  const [produtos, setProdutos] = useState<any[]>([]);
 
+  useEffect(() => {
+    const fetchProdutos = async () => {
+      const data = await getProdutos();
+      setProdutos(data);
+    };
+
+    fetchProdutos();
+  }, []);
 
   return (
     <View style={styles.container}>
-
-
       <ImageBackground
         source={require('../assets/background.jpg')}
         style={styles.backgroundImage}
@@ -19,22 +26,29 @@ export default function Products() {
       >
         <Image source={require('../assets/logo.png')} style={styles.logo} />
 
-        <KeyboardAwareScrollView style={styles.box}>
-          <Button
-            title="Voltar"
-            onPress={() => navigation.goBack()
-            }
+        <View style={styles.box}>
+          <Button title="Voltar" onPress={() => navigation.goBack()} />
 
-
+          <FlatList
+            data={produtos}
+            keyExtractor={(item) => item.id.toString()} // Assumindo que cada item tem um 'id'
+            renderItem={({ item }) => (
+              <View style={styles.itemContainer}>
+                <Text>{item.name}</Text>
+                <Text>R$ {item.price}</Text>
+                <Image source={{ uri: item.imagem_url }} style={styles.image} />
+                <Button title="+" onPress={() => { }} />
+                <Button title="-" onPress={() => { }} />
+              </View>
+            )}
           />
-
-
-
-        </KeyboardAwareScrollView>
+        </View>
       </ImageBackground>
     </View>
   );
 }
+
+export default Pscreen;
 
 const styles = StyleSheet.create({
   container: {
@@ -55,8 +69,13 @@ const styles = StyleSheet.create({
   logo: {
     width: '35%',
     height: '14%',
-    marginTop: '10%',
+    marginTop: '55%',
   },
-
-
+  itemContainer: {
+    padding: 10,
+  },
+  image: {
+    width: 100,
+    height: 100,
+  },
 });

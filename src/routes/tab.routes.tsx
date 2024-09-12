@@ -12,7 +12,7 @@ const TabRoutes: React.FC = () => {
   return (
     <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
-        name="Feed"
+        name="Home"
         component={Feed}
         options={{
           tabBarIcon: ({ color, size }) => <Feather name="home" color={'#ff9705'} size={size} />,
