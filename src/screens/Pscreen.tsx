@@ -34,11 +34,27 @@ const Pscreen: React.FC = () => {
             keyExtractor={(item) => item.id.toString()} // Assumindo que cada item tem um 'id'
             renderItem={({ item }) => (
               <View style={styles.itemContainer}>
-                <Text>{item.name}</Text>
-                <Text>R$ {item.price}</Text>
-                <Image source={{ uri: item.imagem_url }} style={styles.image} />
-                <Button title="+" onPress={() => { }} />
-                <Button title="-" onPress={() => { }} />
+                <View style={styles.boxImg}>
+                  <Image source={{ uri: item.imagem_url }} style={styles.image} />
+                </View>
+                <View style={styles.boxName}>
+                  <Text>{item.name}</Text>
+                </View>
+                <View style={styles.boxPrice}>
+                  <Text>R$ {item.price}</Text>
+                </View>
+
+                <View style={styles.boxButton}>
+                  <View style={styles.plus}>
+                    <Button title="+" onPress={() => { }} />
+                  </View>
+                  <Text>
+                    00
+                  </Text>
+                  <View style={styles.less}>
+                    <Button title="-" onPress={() => { }} />
+                  </View>
+                </View>
               </View>
             )}
           />
@@ -72,10 +88,48 @@ const styles = StyleSheet.create({
     marginTop: '55%',
   },
   itemContainer: {
+    backgroundColor: '#0084ff',
+    justifyContent: 'space-between',
+    flexDirection: 'row', 
+    alignItems: 'center', 
     padding: 10,
+    elevation: 5,
+    margin: 7,
   },
   image: {
-    width: 100,
-    height: 100,
+    width: 70,
+    height: 70,
+    backgroundColor: '#000000e6',
   },
+  boxImg: {
+    width: 80,
+    height: 80,
+    backgroundColor: '#d42525',
+    alignItems: 'center', 
+    justifyContent: 'center',
+  },
+  boxName: {
+    backgroundColor: '#74eb7ae6',
+  },
+  boxPrice: {
+    backgroundColor: '#de37ffe6',
+  },
+  boxButton: {
+    backgroundColor: '#ff0000e6',
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    padding: 5,
+  },
+  plus: {
+    width: 25,
+    height: 25,
+    marginRight: 5,
+    
+  },
+  less: {
+    width: 25,
+    height: 25,
+    marginLeft: 5,
+  },
+
 });
