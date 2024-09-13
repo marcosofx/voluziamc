@@ -31,7 +31,7 @@ const Pscreen: React.FC = () => {
 
           <FlatList
             data={produtos}
-            keyExtractor={(item) => item.id.toString()} // Assumindo que cada item tem um 'id'
+            keyExtractor={(item) => item.id.toString()}
             renderItem={({ item }) => (
               <View style={styles.itemContainer}>
                 <View style={styles.boxImg}>

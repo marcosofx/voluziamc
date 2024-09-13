@@ -7,7 +7,7 @@ import IntroModal from '../screens/IntroModal';
 import { useNavigation } from '@react-navigation/native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { DrawerParamList } from '../routes/types';
-import { RootStackParamList } from '../routes/types';
+
 
 
 const { width } = Dimensions.get('window');

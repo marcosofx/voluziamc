@@ -1,13 +1,13 @@
 export type DrawerParamList = {
-    Tabs: undefined; // TabNavigator
-    Pscreen: undefined; // Pscreen dentro do StackNavigator
+    Tabs: undefined; 
+    Pscreen: undefined; 
   };
   
   export type StackParamList = {
-    Pscreen: undefined; // Tela Pscreen no StackNavigator
+    Pscreen: undefined; 
   };
   
-  // types/navigation.d.ts
+
 export type RootStackParamList = {
   Feed: undefined;
   Pscreen: undefined;
