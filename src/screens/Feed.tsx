@@ -90,7 +90,10 @@ export default function Feed() {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity 
+          style={styles.button}
+          onPress={() => navigation.navigate('StackRoutes', { screen: 'Pscreen', params: { tableName: 'salgados' } })} 
+          >
             <View style={styles.imageContainer}>
               <Image source={require('../assets/feed2.png')} style={styles.imgFeed} />
             </View>

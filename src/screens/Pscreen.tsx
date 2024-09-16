@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     height: 80,
   },
   boxName: {
-    padding: 5,
+    padding: 1,
   },
   boxDatails: {
     padding: 5,
