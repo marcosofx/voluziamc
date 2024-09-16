@@ -1,15 +1,17 @@
 export type DrawerParamList = {
     Tabs: undefined; 
-    Pscreen: undefined; 
+    Pscreen: { tableName: string }; 
   };
   
   export type StackParamList = {
-    Pscreen: undefined; 
+    Pscreen: { tableName: string };
+    StackRoutes: undefined;
+    Tabs: undefined;
   };
   
 
 export type RootStackParamList = {
   Feed: undefined;
-  Pscreen: undefined;
+  Pscreen: { tableName: string };
   Tabs: undefined;
 };

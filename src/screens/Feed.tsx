@@ -7,6 +7,7 @@ import IntroModal from '../screens/IntroModal';
 import { useNavigation } from '@react-navigation/native';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import { DrawerParamList } from '../routes/types';
+import Animated, { interpolate } from 'react-native-reanimated';
 
 
 
@@ -36,6 +37,14 @@ export default function Feed() {
   const navigation = useNavigation<FeedScreenNavigationProp>();
 
   const [modalVisible, setModalVisible] = useState(true);
+
+  const customAnimation = (value: number) => {
+    'worklet';
+    const opacity = interpolate(value, [-1, 0, 1], [0, 1, 0]);
+    return {
+      opacity,
+    };
+  };
 
   const renderItem = ({ item }: { item: CarouselItem }) => (
     <View style={styles.carouselItem}>
@@ -68,11 +77,12 @@ export default function Feed() {
             autoPlay={true}
             autoPlayInterval={3000}
             pagingEnabled={true}
+            customAnimation={customAnimation}
           />
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => navigation.navigate('StackRoutes', { screen: 'Pscreen'})}
+            onPress={() => navigation.navigate('StackRoutes', { screen: 'Pscreen', params: { tableName: 'nhoque' } })} 
             
           >
             <View style={styles.imageContainer}>

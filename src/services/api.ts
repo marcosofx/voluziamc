@@ -1,28 +1,28 @@
-import { supabase } from './supabase';
+import { supabase } from '../services/supabase';
 
-export const getProdutos = async (): Promise<any[]> => {
-  console.log('Iniciando a busca de produtos...');
+export const getProdutos = async (tableName: string): Promise<any[]> => {
+  console.log(`Iniciando a busca de produtos para a tabela: ${tableName}`);
 
   try {
-    
     console.log('Realizando a consulta ao Supabase...');
 
+    // Realizando a consulta ao Supabase
     const { data, error } = await supabase
-      .from('nhoque')
-      .select('id,name,price,imagem_url');
+      .from(tableName)
+      .select('id, name, details, price, imagem_url');
 
-    
-    console.log('Resposta do Supabase:', { data, error });
-
+    // Verificação de erros do Supabase
     if (error) {
-      console.error('Erro ao buscar produtos:', error.message);
-      return [];
+      console.error(`Erro ao consultar o Supabase para a tabela ${tableName}:`, error.message);
+      throw new Error(`Erro ao buscar produtos: ${error.message}`);
     }
 
-    console.log('Produtos encontrados:', data);
+    // Se não houver erro, retornar os dados
+    console.log(`Produtos encontrados na tabela ${tableName}:`, data);
     return data || [];
-  } catch (err) {
-    console.error('Erro na requisição:', err);
+  } catch (err: any) {
+    // Erro genérico de rede ou outro tipo
+    console.error('Erro na requisição:', err.message || err);
     return [];
   }
 };

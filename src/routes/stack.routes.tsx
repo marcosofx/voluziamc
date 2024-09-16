@@ -2,7 +2,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Feed from '../screens/Feed';
 import Pscreen from '../screens/Pscreen';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Feed: undefined;
+  Pscreen: { tableName: string };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function StackRoutes() {
   return (
@@ -14,6 +19,8 @@ export default function StackRoutes() {
       <Stack.Screen
         name='Pscreen'
         component={Pscreen}
+
+        
       />
     </Stack.Navigator>
   );
